@@ -15,12 +15,12 @@ logger = logging.getLogger(__name__)
 DDL = """
 CREATE TABLE IF NOT EXISTS encar_listings (
     car_id BIGINT PRIMARY KEY,
-    "марка" TEXT NOT NULL DEFAULT '',
-    "модель" TEXT NOT NULL DEFAULT '',
-    "год" TEXT,
-    "пробег" INTEGER,
-    "цена" BIGINT,
-    "фото" TEXT,
+    brand TEXT NOT NULL DEFAULT '',
+    model TEXT NOT NULL DEFAULT '',
+    year TEXT,
+    mileage INTEGER,
+    price BIGINT,
+    photo TEXT,
     detail_url TEXT NOT NULL DEFAULT '',
     title_raw TEXT,
     scraped_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -32,16 +32,16 @@ CREATE INDEX IF NOT EXISTS encar_listings_updated_at_idx
 
 UPSERT = """
 INSERT INTO encar_listings (
-    car_id, "марка", "модель", "год", "пробег", "цена",
-    "фото", detail_url, title_raw, scraped_at, updated_at
+    car_id, brand, model, year, mileage, price,
+    photo, detail_url, title_raw, scraped_at, updated_at
 ) VALUES %s
 ON CONFLICT (car_id) DO UPDATE SET
-    "марка" = EXCLUDED."марка",
-    "модель" = EXCLUDED."модель",
-    "год" = EXCLUDED."год",
-    "пробег" = EXCLUDED."пробег",
-    "цена" = EXCLUDED."цена",
-    "фото" = EXCLUDED."фото",
+    brand = EXCLUDED.brand,
+    model = EXCLUDED.model,
+    year = EXCLUDED.year,
+    mileage = EXCLUDED.mileage,
+    price = EXCLUDED.price,
+    photo = EXCLUDED.photo,
     detail_url = EXCLUDED.detail_url,
     title_raw = EXCLUDED.title_raw,
     updated_at = EXCLUDED.updated_at;

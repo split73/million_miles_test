@@ -9,12 +9,12 @@ from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 DDL = """
 CREATE TABLE IF NOT EXISTS encar_listings (
     car_id BIGINT PRIMARY KEY,
-    "марка" TEXT NOT NULL DEFAULT '',
-    "модель" TEXT NOT NULL DEFAULT '',
-    "год" TEXT,
-    "пробег" INTEGER,
-    "цена" BIGINT,
-    "фото" TEXT,
+    brand TEXT NOT NULL DEFAULT '',
+    model TEXT NOT NULL DEFAULT '',
+    year TEXT,
+    mileage INTEGER,
+    price BIGINT,
+    photo TEXT,
     detail_url TEXT NOT NULL DEFAULT '',
     title_raw TEXT,
     scraped_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -71,7 +71,7 @@ def main() -> None:
         with conn.cursor() as cur:
             cur.execute(DDL)
         conn.commit()
-        print("Table encar_listings is ready (columns: марка, модель, год, пробег, цена, фото, …).")
+        print("Table encar_listings is ready (columns: brand, model, year, mileage, price, photo, ...).")
     finally:
         conn.close()
 
