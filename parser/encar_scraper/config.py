@@ -42,7 +42,6 @@ ENCAR_LIST_BASE = (
 
 
 def db_params_from_url(url: str) -> dict:
-    """psycopg2 connect kwargs from DATABASE_URL."""
     if not url:
         raise ValueError("DATABASE_URL is not set")
     p = urlparse(url)

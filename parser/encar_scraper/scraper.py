@@ -15,14 +15,15 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 
-from encar_scraper.config import (
+from .config import (
     ENCAR_LIST_BASE,
     ENCAR_LIST_WAIT_SEC,
     ENCAR_MAX_PAGES,
     ENCAR_PAGE_LIMIT,
 )
-from encar_scraper.db import upsert_listings
-from encar_scraper.listing_text import ParsedListing, parse_listing_text
+
+from .db import upsert_listings
+from .listing_text import ParsedListing, parse_listing_text
 
 logger = logging.getLogger(__name__)
 
@@ -80,6 +81,7 @@ def _dedupe_best_anchors(driver) -> list:
 
 def scrape_page(driver, page: int) -> list[tuple[int, ParsedListing, str, str]]:
     url = _build_list_url(page)
+    print('url ', url)
     logger.info("Loading page %s", page)
     driver.get(url)
     try:
