@@ -2,9 +2,9 @@ from fastapi import APIRouter, Depends, Query
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
-from app.db.session import get_db
-from app.models import EncarListing
-from app.schemas import ListingOut, ListingPage
+from ...db.session import get_db
+from ...models import EncarListing
+from ...schemas import ListingOut, ListingPage
 
 router = APIRouter(prefix="/listings", tags=["listings"])
 
