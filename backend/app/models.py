@@ -1,7 +1,7 @@
 from sqlalchemy import BigInteger, DateTime, Integer, Text, func
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.db.base import Base
+from .db.base import Base
 
 
 class EncarListing(Base):

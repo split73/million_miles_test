@@ -1,8 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api.router import api_router
-
+from .api.router import api_router
 app = FastAPI(title="Encar Backend", version="1.0.0")
 
 app.add_middleware(
