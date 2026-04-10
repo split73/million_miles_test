@@ -1,5 +1,6 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
-
+import psycopg2
+from psycopg2 import OperationalError
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
@@ -7,3 +8,16 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+def check_db_connection():
+    try:
+        conn = psycopg2.connect(settings.database_url)
+        conn.close()
+        print("Successfully connected to the database!")
+        return True
+    except OperationalError as e:
+        print(f"Failed to connect to database: {e}")
+        return False
+
+if __name__ == "__main__":
+    check_db_connection()
