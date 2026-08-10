@@ -41,7 +41,7 @@ jobs:
         with:
           # Targets the built output folder inside your frontend subfolder
           # Change this path to './frontend/.output/public' if this is a Nuxt project
-          path: ./frontend/dist 
+          path: ./frontend/out 
 
   deploy:
     environment:
