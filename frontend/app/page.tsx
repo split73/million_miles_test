@@ -49,7 +49,6 @@ function mapCar(item: BackendListing): CarCard {
 }
 
 async function fetchCars(page: number): Promise<BackendPage> {
-  console.log(API_BASE_URL)
   const res = await fetch(`${API_BASE_URL}/api/v1/listings?page=${page}&per_page=20`);
   if (!res.ok) {
     throw new Error("Failed to fetch cars");
