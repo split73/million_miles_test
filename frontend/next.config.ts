@@ -1,12 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: 'export',
-
-  basePath: '/million_miles_test',
-
+  output: 'standalone',
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'http://backend:8000/api/:path*',
+      },
+    ]
+  },
   images: {
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -18,7 +22,6 @@ const nextConfig: NextConfig = {
       }
     ]
   }
-  
 };
 
 export default nextConfig;
