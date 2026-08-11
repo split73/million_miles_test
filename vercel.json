@@ -9,18 +9,27 @@
       "entrypoint": "app.main:app"
     }
   },
-  "routes": [
+  "builds": [
     {
-      "source": "/api/(.*)",
-      "destination": {
-        "service": "backend"
-      }
+      "src": "frontend/package.json",
+      "use": "@vercel/next"
     },
     {
-      "source": "/(.*)",
-      "destination": {
-        "service": "frontend"
+      "src": "backend/app/main.py",
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "python3.9"
       }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/backend/app/main.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/.next/$1"
     }
   ]
 }
