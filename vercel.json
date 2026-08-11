@@ -1,7 +1,4 @@
 {
-  "projectSettings": {
-    "framework": "services"
-  },
   "services": {
     "frontend": {
       "entrypoint": "frontend",
